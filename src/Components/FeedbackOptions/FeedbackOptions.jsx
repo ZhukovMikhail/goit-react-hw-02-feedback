@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styles from './FeedbackOptions.module.css';
 
-function FeedbackOptions({ options, onLeaveFeedback }) {
-  return (
-    <>
-      <button type="button" onClick={this.hendleGoodbtn}>
-        Good
-      </button>
-      <button type="button" onClick={this.hendleNeutralbtn}>
-        Neutral
-      </button>
-      <button type="button" onClick={this.hendleBadbtn}>
-        Bad
-      </button>
-    </>
-  );
-}
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return options.map(option => (
+    <button
+      type="button"
+      className={styles.button}
+      key={option}
+      name={option}
+      onClick={onLeaveFeedback}
+    >
+      {option}
+    </button>
+  ));
+};
 
 export default FeedbackOptions;
