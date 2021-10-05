@@ -15,7 +15,7 @@ class App extends Component {
   hendleFeedback = e => {
     const { name } = e.currentTarget;
     console.log(name);
-    this.setState(prev => ({ [name]: prev.good + 1 }));
+    this.setState(prev => ({ [name]: prev.[name] + 1 }));
     this.hendleTotalValue();
     this.onPercentageOfGood();
   };
