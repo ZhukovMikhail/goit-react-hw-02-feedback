@@ -9,32 +9,33 @@ class App extends Component {
     neutral: 0,
     bad: 0,
   };
+  compValue = Object.keys(this.state)[0];
   data = {
+    compValue: 0,
     total: 0,
-    percentageOfGood: 0,
-    good: 0,
+    percentageOfcompValue: 0,
   };
 
   hendleFeedback = e => {
     const { name } = e.currentTarget;
     console.log(name);
     this.setState(prev => ({ [name]: prev[name] + 1 }));
-    if (name === 'good') {
-      this.data.good += 1;
+    if (name === this.compValue) {
+      this.data.compValue += 1;
     }
     this.hendleTotalValue();
-    this.onPercentageOfGood();
+    this.onpercentageOfcompValue();
   };
 
   hendleTotalValue = e => (this.data.total += 1);
 
-  onPercentageOfGood = e => {
-    this.data.percentageOfGood = Math.floor(
-      (this.data.good / this.data.total) * 100,
+  onpercentageOfcompValue = e => {
+    this.data.percentageOfcompValue = Math.floor(
+      (this.data.compValue / this.data.total) * 100,
     );
-    console.log('good', this.state.good);
+    console.log('good', [Object.keys(this.state)[0]]);
     console.log('total', this.data.total);
-    console.log('percentageOfGood', this.data.percentageOfGood);
+    console.log('percentageOfcompValue', this.data.percentageOfcompValue);
   };
 
   render() {
@@ -51,10 +52,8 @@ class App extends Component {
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
-          // total={this.state.total}
           total={this.data.total}
-          // positivePercentage={this.state.percentageOfGood}
-          positivePercentage={this.data.percentageOfGood}
+          positivePercentage={this.data.percentageOfcompValue}
         />
       </div>
     );
@@ -62,36 +61,3 @@ class App extends Component {
 }
 
 export default App;
-
-// hendleGoodbtn = e => {
-//   this.setState(prev => ({ good: prev.good + 1 }));
-//   this.hendleTotalValue();
-//   this.onPercentageOfGood();
-// };
-// hendleNeutralbtn = e => {
-//   this.setState(prev => ({ neutral: prev.neutral + 1 }));
-//   this.hendleTotalValue();
-//   this.onPercentageOfGood();
-// };
-// hendleBadbtn = e => {
-//   this.setState(prev => ({ bad: prev.bad + 1 }));
-//   this.hendleTotalValue();
-//   this.onPercentageOfGood();
-// };
-
-/* <button type="button" onClick={this.hendleGoodbtn}>
-  Good
-</button>
-<button type="button" onClick={this.hendleNeutralbtn}>
-  Neutral
-</button>
-<button type="button" onClick={this.hendleBadbtn}>
-  Bad
-</button> */
-
-/* <div>Statistics:</div>
-<p>Good:{this.state.good}</p>
-<p>Neutral:{this.state.neutral}</p>
-<p>Bad:{this.state.bad}</p>
-<p>Total:{this.state.total}</p>
-<p>positive feedback:{this.state.percentageOfGood}%</p> */
