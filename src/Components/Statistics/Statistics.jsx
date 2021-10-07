@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Statistics.module.css';
+import PropTypes from 'prop-types';
 
 function Statistics({ good, neutral, bad, total, positivePercentage }) {
   if (total !== 0) {
@@ -28,3 +29,13 @@ function Statistics({ good, neutral, bad, total, positivePercentage }) {
   }
 }
 export default Statistics;
+
+Statistics.propTypes = {
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
+  positivePercentage: PropTypes.number.isRequired,
+  stats: PropTypes.string,
+  title: PropTypes.string,
+};

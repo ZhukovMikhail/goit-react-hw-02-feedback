@@ -8,6 +8,8 @@ class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+  data = {
     total: 0,
     percentageOfGood: 0,
   };
@@ -20,16 +22,12 @@ class App extends Component {
     this.onPercentageOfGood();
   };
 
-  hendleTotalValue = e => {
-    this.setState(prev => ({
-      total: prev.total + 1,
-    }));
-    console.log(this.state.total + 1);
-  };
+  hendleTotalValue = e => (this.data.total += 1);
+
   onPercentageOfGood = e => {
-    this.setState(prev => ({
-      percentageOfGood: Math.floor((prev.good / prev.total + 0.001) * 100),
-    }));
+    this.data.percentageOfGood = Math.floor(
+      (this.state.good / this.data.total + 0.001) * 100,
+    );
   };
 
   render() {
@@ -46,8 +44,10 @@ class App extends Component {
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
-          total={this.state.total}
-          positivePercentage={this.state.percentageOfGood}
+          // total={this.state.total}
+          total={this.data.total}
+          // positivePercentage={this.state.percentageOfGood}
+          positivePercentage={this.data.percentageOfGood}
         />
       </div>
     );
