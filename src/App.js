@@ -12,12 +12,16 @@ class App extends Component {
   data = {
     total: 0,
     percentageOfGood: 0,
+    good: 0,
   };
 
   hendleFeedback = e => {
     const { name } = e.currentTarget;
     console.log(name);
     this.setState(prev => ({ [name]: prev[name] + 1 }));
+    if (name === 'good') {
+      this.data.good += 1;
+    }
     this.hendleTotalValue();
     this.onPercentageOfGood();
   };
@@ -26,8 +30,11 @@ class App extends Component {
 
   onPercentageOfGood = e => {
     this.data.percentageOfGood = Math.floor(
-      (this.state.good / this.data.total + 0.001) * 100,
+      (this.data.good / this.data.total) * 100,
     );
+    console.log('good', this.state.good);
+    console.log('total', this.data.total);
+    console.log('percentageOfGood', this.data.percentageOfGood);
   };
 
   render() {
